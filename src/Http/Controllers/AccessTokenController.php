@@ -1,12 +1,12 @@
 <?php
 
-namespace Dusterio\LumenPassport\Http\Controllers;
+namespace Ekopras18\LumenPassport\Http\Controllers;
 
 use Laravel\Passport\Passport;
 use Laravel\Passport\Token;
 use Laminas\Diactoros\Response as Psr7Response;
 use Psr\Http\Message\ServerRequestInterface;
-use Dusterio\LumenPassport\LumenPassport;
+use Ekopras18\LumenPassport\LumenPassport;
 use Laravel\Passport\PersonalAccessTokenFactory;
 use Laravel\Passport\TokenRepository;
 use League\OAuth2\Server\AuthorizationServer;

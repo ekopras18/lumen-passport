@@ -1,6 +1,6 @@
 <?php
 
-namespace Dusterio\LumenPassport;
+namespace Ekopras18\LumenPassport;
 
 class RouteRegistrar
 {
@@ -59,7 +59,7 @@ class RouteRegistrar
      */
     public function forAccessTokens()
     {
-        $this->app->post('/token', $this->prefix('\Dusterio\LumenPassport\Http\Controllers\AccessTokenController@issueToken'));
+        $this->app->post('/token', $this->prefix('\Ekopras18\LumenPassport\Http\Controllers\AccessTokenController@issueToken'));
 
         $this->app->group(['middleware' => ['auth']], function () {
             $this->app->get('/tokens', $this->prefix('AuthorizedAccessTokenController@forUser'));

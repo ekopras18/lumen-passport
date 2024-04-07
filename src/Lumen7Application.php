@@ -1,6 +1,6 @@
 <?php
 
-namespace Dusterio\LumenPassport;
+namespace Ekopras18\LumenPassport;
 
 use Laravel\Lumen\Application;
 

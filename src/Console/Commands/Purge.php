@@ -1,6 +1,6 @@
 <?php
 
-namespace Dusterio\LumenPassport\Console\Commands;
+namespace Ekopras18\LumenPassport\Console\Commands;
 
 use Illuminate\Console\Command;
 use Laravel\Passport\ClientRepository;

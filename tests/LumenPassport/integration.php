@@ -1,6 +1,6 @@
 <?php
 
-namespace Dusterio\LumenPassport\Tests;
+namespace Ekopras18\LumenPassport\Tests;
 
 use Dusterio\LumenPassport\LumenPassport;
 use Carbon\Carbon;

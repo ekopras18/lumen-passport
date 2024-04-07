@@ -1,8 +1,8 @@
 <?php
 
-namespace Dusterio\LumenPassport;
+namespace Ekopras18\LumenPassport;
 
-use Dusterio\LumenPassport\Console\Commands\Purge;
+use Ekopras18\LumenPassport\Console\Commands\Purge;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Connection;
 
@@ -23,7 +23,7 @@ class PassportServiceProvider extends ServiceProvider
             return $this->app['db.connection'];
         });
 
-        if (preg_match('/5\.[678]\.\d+/', $this->app->version())) {
+        if (preg_match('/(5\.[5-8]\..*)|([6789]\..*)|(10\..*)/', $this->app->version())) {
             $this->app->singleton(\Illuminate\Hashing\HashManager::class, function ($app) {
                 return new \Illuminate\Hashing\HashManager($app);
             });
