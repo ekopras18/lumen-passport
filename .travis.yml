@@ -1,0 +1,15 @@
+language: php
+
+cache:
+  directories:
+    - $HOME/.composer/cache
+
+php:
+  - '7.1'
+  - '8.1'
+
+before_script:
+  - COMPOSER_MEMORY_LIMIT=-1 travis_retry composer install --prefer-dist --no-interaction
+
+script:
+  - ./vendor/bin/phpunit
