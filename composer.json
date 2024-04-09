@@ -1,23 +1,28 @@
 {
-    "name": "ekopras18/lumen-passport-alternative",
+    "name": "ekopras18/lumen-passport",
     "type": "library",
-    "description": "Making Laravel Passport work with Lumen",
+    "description": "Laravel Passport Support Laravel Lumen 10, Laravel Passport <= 11.*",
     "keywords": [
         "php",
         "lumen",
         "laravel passport"
     ],
-    "homepage": "https://github.com/dusterio/lumen-passport",
+    "homepage": "https://github.com/ekopras/lumen-passport",
     "license": "MIT",
     "authors": [
         {
             "name": "Denis Mysenko",
             "email": "denis@mysenko.com",
             "homepage": "https://www.mysenko.com"
+        },
+        {
+            "name": "Eko Prasetio",
+            "email": "ekoxit1@gmail.com",
+            "homepage": "https://ekopras.engineer"
         }
     ],
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.4",
         "illuminate/database": "~5.3|~5.4|~5.5|~5.6|^6.0|^7.0|^8.0|^9.0|^10.0",
         "illuminate/support": "~5.3|~5.4|~5.5|~5.6|^6.0|^7.0|^8.0|^9.0|^10.0",
         "laravel/passport": ">=0.2.2,<12.0",
