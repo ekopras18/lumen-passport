@@ -238,3 +238,14 @@ Source : [Lumen Passport](https://github.com/dusterio/lumen-passport)
 PASSPORT_PERSONAL_ACCESS_CLIENT_ID=
 PASSPORT_PERSONAL_ACCESS_CLIENT_SECRET=
 ```
+
+
+## Install passport
+
+```bash
+# Create new tables for Passport
+php artisan migrate
+
+# Install encryption keys and other stuff for Passport
+php artisan passport:install
+```
