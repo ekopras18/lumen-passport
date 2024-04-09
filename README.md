@@ -249,3 +249,26 @@ php artisan migrate
 # Install encryption keys and other stuff for Passport
 php artisan passport:install
 ```
+
+## Route list
+
+```bash
+❯ php artisan route:list
++--------+--------------------------------------------+------------+--------------------------------------------------------------------+------------+------------+
+| Verb   | Path                                       | NamedRoute | Controller                                                         | Action     | Middleware |
++--------+--------------------------------------------+------------+--------------------------------------------------------------------+------------+------------+
+| POST   | /v1/oauth/token                            |            | \Ekopras18\LumenPassport\Http\Controllers\AccessTokenController    | issueToken |            |
+| GET    | /v1/oauth/tokens                           |            | \Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController | forUser    | auth       |
+| DELETE | /v1/oauth/tokens/{tokenId}                 |            | \Laravel\Passport\Http\Controllers\AuthorizedAccessTokenController | destroy    | auth       |
+| POST   | /v1/oauth/token/refresh                    |            | \Laravel\Passport\Http\Controllers\TransientTokenController        | refresh    | auth       |
+| GET    | /v1/oauth/clients                          |            | \Laravel\Passport\Http\Controllers\ClientController                | forUser    | auth       |
+| POST   | /v1/oauth/clients                          |            | \Laravel\Passport\Http\Controllers\ClientController                | store      | auth       |
+| PUT    | /v1/oauth/clients/{clientId}               |            | \Laravel\Passport\Http\Controllers\ClientController                | update     | auth       |
+| DELETE | /v1/oauth/clients/{clientId}               |            | \Laravel\Passport\Http\Controllers\ClientController                | destroy    | auth       |
+| GET    | /v1/oauth/scopes                           |            | \Laravel\Passport\Http\Controllers\ScopeController                 | all        | auth       |
+| GET    | /v1/oauth/personal-access-tokens           |            | \Laravel\Passport\Http\Controllers\PersonalAccessTokenController   | forUser    | auth       |
+| POST   | /v1/oauth/personal-access-tokens           |            | \Laravel\Passport\Http\Controllers\PersonalAccessTokenController   | store      | auth       |
+| DELETE | /v1/oauth/personal-access-tokens/{tokenId} |            | \Laravel\Passport\Http\Controllers\PersonalAccessTokenController   | destroy    | auth       |
+| GET    | /                                          |            | None                                                               | Closure    |            |
++--------+--------------------------------------------+------------+--------------------------------------------------------------------+------------+------------+
+```
