@@ -248,6 +248,9 @@ php artisan migrate
 
 # Install encryption keys and other stuff for Passport
 php artisan passport:install
+
+# Add new client for your application
+php artisan passport:client
 ```
 
 ## Route list
