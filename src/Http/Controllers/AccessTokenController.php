@@ -4,6 +4,8 @@ namespace Ekopras18\LumenPassport\Http\Controllers;
 
 use Laravel\Passport\Passport;
 use Laravel\Passport\Token;
+use Laravel\Passport\Client;
+use App\Models\User;
 use Laminas\Diactoros\Response as Psr7Response;
 use Psr\Http\Message\ServerRequestInterface;
 use Ekopras18\LumenPassport\LumenPassport;
@@ -37,6 +39,27 @@ class AccessTokenController extends \Laravel\Passport\Http\Controllers\AccessTok
         $response = $this->withErrorHandling(function () use ($request) {
             $input = (array) $request->getParsedBody();
             $clientId = isset($input['client_id']) ? $input['client_id'] : null;
+            $clientSecret = isset($input['client_secret']) ? $input['client_secret'] : null;
+            $email = isset($input['username']) ? $input['username'] : null;
+
+            $user = User::where('email', $email)->first();
+            if (!$user) {
+                return $this->customErrorHandling('invalid_username', 'Username not found', 'The user credentials are incorrect.');
+            }
+
+            $client = Client::where('user_id', $user->id)->first();
+
+            if(!$client) {
+                return $this->customErrorHandling('invalid_client', 'Client not found', 'The client credentials are incorrect.');
+            }
+
+            if ($client->id !== $clientId) {
+                return $this->customErrorHandling('invalid_client_id', 'Client id not match', 'The client id credentials not match.');
+            }
+
+            if ($client->secret !== $clientSecret) {
+                return $this->customErrorHandling('invalid_client_secret', 'Client secret not match', 'The client secret credentials not match.');
+            }
 
             // Overwrite password grant at the last minute to add support for customized TTLs
             $this->server->enableGrantType(
@@ -103,5 +126,14 @@ class AccessTokenController extends \Laravel\Passport\Http\Controllers\AccessTok
         }
 
         $query->update(['revoked' => true]);
+    }
+
+    protected function customErrorHandling($error, $description, $message)
+    {
+        return response()->json([
+            'error' => $error,
+            'error_description' => $description,
+            'message' => $message
+        ], 401);
     }
 }
