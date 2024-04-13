@@ -2,9 +2,11 @@
 
 namespace Ekopras18\LumenPassport;
 
-use Laravel\Lumen\Application;
-
-class Lumen7Application extends Application {
+/**
+ * Class Lumen7Application
+ * @package Ekopras18\LumenPassport
+ */
+class Lumen7Application {
     /**
      * @return bool
      */

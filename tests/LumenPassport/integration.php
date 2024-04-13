@@ -17,7 +17,7 @@ class IntegrationTest extends TestCase
     /**
      * @test
      */
-    public function global_token_ttl_can_be_set_via_lumen_class() {
+    public function testGlobalTokenTtlCanBesetViaLumenClass() {
         $now = Carbon::now();
         Carbon::setTestNow($now);
         $expiryDate = $now->clone()->addYear();
@@ -29,7 +29,7 @@ class IntegrationTest extends TestCase
     /**
      * @test
      */
-    public function client_specific_token_ttl_can_be_set_via_lumen_class()
+    public function testClientSpecificTokenTtlCanBeSetViaLumenClass()
     {
         $clientId = 2;
         $now = Carbon::now();
@@ -44,4 +44,6 @@ class IntegrationTest extends TestCase
         $this->assertEquals(LumenPassport::tokensExpireIn(), Carbon::now()->diff($defaultGlobalExpiryDate));
         $this->assertEquals(Passport::tokensExpireIn(), Carbon::now()->diff($defaultGlobalExpiryDate));
     }
+
+
 }

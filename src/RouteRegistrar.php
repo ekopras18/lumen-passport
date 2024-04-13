@@ -2,6 +2,13 @@
 
 namespace Ekopras18\LumenPassport;
 
+/**
+ * Class RouteRegistrar
+ *
+ * This class is responsible for registering routes for the Lumen Passport package.
+ *
+ * @package Ekopras18\LumenPassport
+ */
 class RouteRegistrar
 {
     /**
@@ -18,7 +25,7 @@ class RouteRegistrar
      * Create a new route registrar instance.
      *
      * @param  $app
-     * @param  array $options
+     * @param array $options
      */
     public function __construct($app, array $options = [])
     {

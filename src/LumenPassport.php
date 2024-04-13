@@ -9,6 +9,13 @@ use Carbon\Carbon;
 use Laravel\Lumen\Application;
 use Laravel\Lumen\Routing\Router;
 
+/**
+ * Class LumenPassport
+ *
+ * This class is responsible for registering routes for the Lumen Passport package.
+ *
+ * @package Ekopras18\LumenPassport
+ */
 class LumenPassport
 {
     /**
@@ -77,7 +84,7 @@ class LumenPassport
 
         $options = array_merge($defaultOptions, $options);
 
-        $callback->group(Arr::except($options, ['namespace']), function ($router) use ($callback, $options) {
+        $callback->group(Arr::except($options, ['namespace']), function ($router) use ($options) {
             $routes = new RouteRegistrar($router, $options);
             $routes->all();
         });

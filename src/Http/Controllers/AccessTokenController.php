@@ -15,29 +15,45 @@ use League\OAuth2\Server\AuthorizationServer;
 
 /**
  * Class AccessTokenController
- * @package Dusterio\LumenPassport\Http\Controllers
+ *
+ * This class extends the Laravel Passport's AccessTokenController and is responsible for handling access token requests.
+ *
+ * @package Ekopras18\LumenPassport\Http\Controllers
  */
 class AccessTokenController extends \Laravel\Passport\Http\Controllers\AccessTokenController
 {
+    /**
+     * @var PersonalAccessTokenFactory
+     */
     protected $accessTokenFactory;
+
+    /**
+     * AccessTokenController constructor.
+     *
+     * @param PersonalAccessTokenFactory $accessTokenFactory
+     * @param AuthorizationServer $server
+     * @param TokenRepository $tokens
+     */
     public function __construct(
         PersonalAccessTokenFactory $accessTokenFactory,
-        AuthorizationServer $server,
-        TokenRepository $tokens
-    ) {
+        AuthorizationServer        $server,
+        TokenRepository            $tokens
+    )
+    {
         $this->accessTokenFactory = $accessTokenFactory;
         parent::__construct($server, $tokens);
     }
+
     /**
      * Authorize a client to access the user's account.
      *
-     * @param  ServerRequestInterface  $request
+     * @param ServerRequestInterface $request
      * @return Response
      */
     public function issueToken(ServerRequestInterface $request)
     {
         $response = $this->withErrorHandling(function () use ($request) {
-            $input = (array) $request->getParsedBody();
+            $input = (array)$request->getParsedBody();
             $clientId = isset($input['client_id']) ? $input['client_id'] : null;
             $clientSecret = isset($input['client_secret']) ? $input['client_secret'] : null;
             $email = isset($input['username']) ? $input['username'] : null;
@@ -49,7 +65,7 @@ class AccessTokenController extends \Laravel\Passport\Http\Controllers\AccessTok
 
             $client = Client::where('user_id', $user->id)->first();
 
-            if(!$client) {
+            if (!$client) {
                 return $this->customErrorHandling('invalid_client', 'Client not found', 'The client credentials are incorrect.');
             }
 
@@ -113,8 +129,8 @@ class AccessTokenController extends \Laravel\Passport\Http\Controllers\AccessTok
     /**
      * Revoke the user's other access tokens for the client.
      *
-     * @param  Token $token
-     * @param  string $tokenId
+     * @param Token $token
+     * @param string $tokenId
      * @return void
      */
     protected function revokeOrDeleteAccessTokens(Token $token, $tokenId)
@@ -128,6 +144,14 @@ class AccessTokenController extends \Laravel\Passport\Http\Controllers\AccessTok
         $query->update(['revoked' => true]);
     }
 
+    /**
+     * Custom error handling method.
+     *
+     * @param string $error
+     * @param string $description
+     * @param string $message
+     * @return \Illuminate\Http\JsonResponse
+     */
     protected function customErrorHandling($error, $description, $message)
     {
         return response()->json([
