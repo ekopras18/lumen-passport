@@ -8,6 +8,13 @@ use Illuminate\Support\Facades\DB;
 use DateTime;
 use Laravel\Passport\Passport;
 
+/**
+ * Class Purge
+ *
+ * This command is used to delete expired refresh tokens and their associated tokens from the database.
+ *
+ * @package Ekopras18\LumenPassport\Console\Commands
+ */
 class Purge extends Command
 {
     /**
